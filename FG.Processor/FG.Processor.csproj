@@ -1,17 +1,16 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.0.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FG.Domain.DTO's\FG.Domain.DTO.csproj" />
     <ProjectReference Include="..\FG.Domain.MSSql\Database.MSSql.csproj" />
-    <ProjectReference Include="..\FG.Processor\FG.Processor.csproj" />
   </ItemGroup>
-
 
 </Project>

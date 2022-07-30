@@ -10,33 +10,31 @@ namespace FG.Database.MSSql.Repositories
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
         private readonly FGDbContext context;
-        private readonly DbSet<T> table;
 
         public GenericRepository(FGDbContext context)
         {
             this.context = context;
-            table = context.Set<T>();
         }
 
         public async Task Delete(int Entity)
         {
-            T exists =await table.FindAsync(Entity);
-            table.Remove(exists);
+            T exist =await context.Set<T>().FindAsync(Entity);
+            context.Remove(exist);
         }
 
-        public Task<List<T>> GetAll()
+        public async Task<List<T>> GetAll()
         {
-            return context.Set<T>().ToListAsync();
+            return await context.Set<T>().ToListAsync();
+        }
+         
+        public async Task<T> GetbyId(int entity)
+        {
+            return await context.Set<T>().FindAsync(entity);
         }
 
-        public Task<T> GetbyId(T entity)
+        public void Update(T Entity)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task Update(T Entity)
-        {
-            throw new NotImplementedException();
+            context.Entry(Entity).State = EntityState.Modified;
         }
     }
 }

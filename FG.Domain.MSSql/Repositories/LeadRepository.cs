@@ -7,7 +7,7 @@ using System.Text;
 
 namespace FG.Database.MSSql.Repositories
 {
-    public class LeadRepository:GenericRepository<LeadDto>, ILeadRepository
+    public class LeadRepository:GenericRepository<Lead>, ILeadRepository
     {
         public LeadRepository(FGDbContext context):base(context)
         {

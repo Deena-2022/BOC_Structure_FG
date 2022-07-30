@@ -5,7 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Processor\LeadsPage\Commands\" />
+    <Compile Remove="Processor\**" />
+    <EmbeddedResource Remove="Processor\**" />
+    <None Remove="Processor\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -16,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FG.Domain.DTO's\FG.Domain.DTO.csproj" />
+    <ProjectReference Include="..\Login_Project\Login_Project.csproj" />
   </ItemGroup>
 
 </Project>

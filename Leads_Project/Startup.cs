@@ -1,5 +1,10 @@
 using FG.Database.MSSql.context;
 using FG.Database.MSSql.Repositories;
+
+using FG.Domain.Processor.LeadsPage.Queries;
+using FG.Processor;
+using FG.Processor.Processor;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -9,9 +14,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace Leads_Project
@@ -29,10 +36,16 @@ namespace Leads_Project
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            //services.AddMediatR(typeof(GetAllQuery).GetTypeInfo().Assembly);
+            //services.AddMediatR(Assembly.GetExecutingAssembly());
+            services.AddApplication();
             services.AddDbContext<FGDbContext>(options =>
                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddTransient<IUnitOfWork, UnitOfWork>();
-            services.AddTransient<ILeadRepository, LeadRepository>();
+            services.AddScoped<ILeadRepository, LeadRepository>();
+            
+            /*services.AddControllers().AddNewtonsoftJson(options =>
+    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);*/
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
