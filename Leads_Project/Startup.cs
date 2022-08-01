@@ -1,9 +1,11 @@
+using Fg.FluentValidation;
 using FG.Database.MSSql.context;
 using FG.Database.MSSql.Repositories;
 
 using FG.Domain.Processor.LeadsPage.Queries;
 using FG.Processor;
 using FG.Processor.Processor;
+using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -36,8 +38,7 @@ namespace Leads_Project
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            //services.AddMediatR(typeof(GetAllQuery).GetTypeInfo().Assembly);
-            //services.AddMediatR(Assembly.GetExecutingAssembly());
+            services.AddValidations();
             services.AddApplication();
             services.AddDbContext<FGDbContext>(options =>
                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));

@@ -11,6 +11,7 @@ namespace FG.Processor
         {
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
         }
     }
 }
