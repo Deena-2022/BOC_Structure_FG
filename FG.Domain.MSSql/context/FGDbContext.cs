@@ -8,6 +8,8 @@ namespace FG.Database.MSSql.context
 {
     public class FGDbContext : DbContext
     {
+        
+
         public FGDbContext(DbContextOptions<FGDbContext>options):base(options)
         {
 

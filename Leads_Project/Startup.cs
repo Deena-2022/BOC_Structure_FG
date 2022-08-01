@@ -1,3 +1,4 @@
+using Database.MSSql.Repositories;
 using Fg.FluentValidation;
 using FG.Database.MSSql.context;
 using FG.Database.MSSql.Repositories;
@@ -44,9 +45,9 @@ namespace Leads_Project
                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddScoped<ILeadRepository, LeadRepository>();
-            
-            /*services.AddControllers().AddNewtonsoftJson(options =>
-    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);*/
+            services.AddTransient<IUserRepository, UserRepository>();
+
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,4 +1,5 @@
-﻿using FG.Database.MSSql.context;
+﻿using Database.MSSql.Repositories;
+using FG.Database.MSSql.context;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,13 +11,17 @@ namespace FG.Database.MSSql.Repositories
     {
         private readonly FGDbContext context;
         public ILeadRepository LeadRepository { get; }
+        public IUserRepository UserRepository { get; }
 
-        public UnitOfWork(FGDbContext context,ILeadRepository leadRepository)
+        public UnitOfWork(FGDbContext context,ILeadRepository leadRepository,IUserRepository userRepository)
         {
             this.context = context;
             LeadRepository = leadRepository;
+            UserRepository = userRepository;
         }
         public ILeadRepository lead => new LeadRepository(context);
+
+        public IUserRepository user =>  new UserRepository(context);
 
         public Task Save()
         {

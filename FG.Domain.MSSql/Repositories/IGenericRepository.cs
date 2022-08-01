@@ -10,6 +10,7 @@ namespace FG.Database.MSSql.Repositories
         Task<List<T>> GetAll();
         Task<T> GetbyId(int entity);
         void Update(T Entity);
+        Task Add(T entity);
         Task Delete(int Entity);
     }
 }

@@ -4,5 +4,11 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FG.Domain.MSSql\Database.MSSql.csproj" />
+    <ProjectReference Include="..\Fg.FluentValidation\Fg.FluentValidation.csproj" />
+    <ProjectReference Include="..\FG.Processor\FG.Processor.csproj" />
+  </ItemGroup>
+
 
 </Project>
