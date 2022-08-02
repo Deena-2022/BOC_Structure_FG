@@ -22,7 +22,7 @@ namespace Fg.FluentValidation
             RuleFor(x => x.Companyname).NotNull().NotEmpty().Matches("^[a-zA-Z ]*$");
             RuleFor(x => x.Phone).NotNull().NotEmpty().Matches("^[0-9 ]*$").MaximumLength(10);
             RuleFor(x => x.Email).NotNull().NotEmpty().EmailAddress().
-                WithMessage("Invalid email format.").Must(UniqueName).WithMessage("Email already exists.");       
+                WithMessage("Invalid email format.").Must(UniqueMail).WithMessage("Email already exists.");       
             RuleFor(x => x.Password).NotNull().NotEmpty().Matches("((?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])|(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[^a-zA-Z0-9])|" +
             "(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[^a-zA-Z0-9])|(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^a-zA-Z0-9])).{8,}$");
             RuleFor(x => x.Passwordagain).NotNull().NotEmpty().Equal(x => x.Password).WithMessage("Passwords does not match"); ;
@@ -35,7 +35,7 @@ namespace Fg.FluentValidation
             this.context = context;
         }
 
-        private bool UniqueName(string email)
+        private bool UniqueMail(string email)
         {          
             var result = context.tbl_User.Where(x => x.Email == email);
             if (result == null) return true;

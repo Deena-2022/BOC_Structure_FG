@@ -3,6 +3,7 @@ using FG.Domain.Processor.LeadsPage.Queries;
 using FG.Processor.Processor.LeadsPage.Queries;
 using FG.Processor.Processor.LeadsProcessor.Commands;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -12,6 +13,7 @@ using System.Threading.Tasks;
 
 namespace Leads_Project.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class LeadsController : ControllerBase

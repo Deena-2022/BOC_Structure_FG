@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FG.Domain.MSSql\Database.MSSql.csproj" />
-    <ProjectReference Include="..\Fg.FluentValidation\Fg.FluentValidation.csproj" />
+    <ProjectReference Include="..\Fg.FluentValidation\FG.FluentValidation.csproj" />
     <ProjectReference Include="..\FG.Processor\FG.Processor.csproj" />
   </ItemGroup>
 
