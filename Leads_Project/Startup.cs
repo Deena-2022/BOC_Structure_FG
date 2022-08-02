@@ -51,29 +51,8 @@ namespace Leads_Project
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddScoped<ILeadRepository, LeadRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTokenServices();
 
-            var key = Configuration.GetValue<string>("JwtConfig:Key");
-
-            services.AddAuthentication(x =>
-            {
-                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(x =>
-            {
-                x.RequireHttpsMetadata = false;
-                x.SaveToken = true;
-                x.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    ValidateIssuer = false,
-                    ValidateAudience = false,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(key))
-                };
-            });
-#pragma warning disable ASP0000 // Do not call 'IServiceCollection.BuildServiceProvider' in 'ConfigureServices'
-            var context =services.BuildServiceProvider().GetService<FGDbContext>(); ;
-#pragma warning restore ASP0000 // Do not call 'IServiceCollection.BuildServiceProvider' in 'ConfigureServices'
-            services.AddSingleton<IJTAuth>(new Auth(key,context));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

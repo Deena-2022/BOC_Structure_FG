@@ -18,7 +18,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FG.Domain.DTO's\FG.Domain.DTO.csproj" />
-    <ProjectReference Include="..\Login_Project\Login_Project.csproj" />
   </ItemGroup>
 
 </Project>

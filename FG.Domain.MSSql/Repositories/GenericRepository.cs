@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,6 +27,11 @@ namespace FG.Database.MSSql.Repositories
         {
             T exist =await context.Set<T>().FindAsync(Entity);
             context.Remove(exist);
+        }
+
+        public IQueryable<T> FindByCondition(Expression<Func<T, bool>> expression)
+        {
+            return context.Set<T>().Where(expression);            
         }
 
         public async Task<List<T>> GetAll()
