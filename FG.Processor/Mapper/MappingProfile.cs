@@ -16,6 +16,7 @@ namespace FG.Domain.MappingProfile
             CreateMap<Lead, LeadDto>();
             CreateMap<UpdateCommand, Lead>();
             CreateMap<CreateCommand, User>();
+            CreateMap<Opportunity, OpportunityDto>();
         }
     }
 }

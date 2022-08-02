@@ -1,7 +1,13 @@
+using Database.MSSql.Repositories;
+using Fg.FluentValidation;
+using FG.Database.MSSql.context;
+using FG.Database.MSSql.Repositories;
+using FG.Processor;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -26,6 +32,14 @@ namespace Opportunity_Project
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddValidations();
+            services.AddApplication();
+            services.AddDbContext<FGDbContext>(options =>
+               options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<ILeadRepository, LeadRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IOpportunityRepository, OpportunityRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -10,6 +10,7 @@ namespace FG.Database.MSSql.Repositories
     {
         ILeadRepository lead { get; }
         IUserRepository user { get; }
+        IOpportunityRepository Opportunity { get; }
         Task Save();
     }
 }

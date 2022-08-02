@@ -13,4 +13,8 @@
     <ProjectReference Include="..\FG.Domain.MSSql\Database.MSSql.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Processor\OpportunityProcessor\Commands\" />
+  </ItemGroup>
+
 </Project>

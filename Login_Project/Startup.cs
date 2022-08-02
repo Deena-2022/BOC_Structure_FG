@@ -39,6 +39,7 @@ namespace Login_Project
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddScoped<ILeadRepository, LeadRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IOpportunityRepository, OpportunityRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

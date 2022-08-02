@@ -12,16 +12,21 @@ namespace FG.Database.MSSql.Repositories
         private readonly FGDbContext context;
         public ILeadRepository LeadRepository { get; }
         public IUserRepository UserRepository { get; }
+        public IOpportunityRepository OpportunityRepository { get; }
 
-        public UnitOfWork(FGDbContext context,ILeadRepository leadRepository,IUserRepository userRepository)
+        public UnitOfWork(FGDbContext context,ILeadRepository leadRepository,
+            IUserRepository userRepository,IOpportunityRepository opportunityRepository)
         {
             this.context = context;
             LeadRepository = leadRepository;
             UserRepository = userRepository;
+            OpportunityRepository = opportunityRepository;
         }
         public ILeadRepository lead => new LeadRepository(context);
 
         public IUserRepository user =>  new UserRepository(context);
+
+        public IOpportunityRepository Opportunity =>new OpportunityRepository(context);
 
         public Task Save()
         {

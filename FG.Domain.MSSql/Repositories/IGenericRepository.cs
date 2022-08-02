@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FG.Database.MSSql.Repositories
 {
-    public interface IGenericRepository<T> where T:class
+    public interface IGenericRepository<T>where T:class
     {
         Task<List<T>> GetAll();
         IQueryable<T> FindByCondition(Expression<Func<T, bool>> expression);

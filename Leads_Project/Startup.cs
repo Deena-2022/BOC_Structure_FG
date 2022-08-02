@@ -51,6 +51,7 @@ namespace Leads_Project
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddScoped<ILeadRepository, LeadRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IOpportunityRepository, OpportunityRepository>();
             services.AddTokenServices();
 
         }
