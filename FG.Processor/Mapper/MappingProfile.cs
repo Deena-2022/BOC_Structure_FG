@@ -2,6 +2,7 @@
 using FG.Domain.DataEntity;
 using FG.Domain.DTO_s;
 using FG.Processor.Processor.LeadsProcessor.Commands;
+using FG.Processor.Processor.OpportunityProcessor.Commands;
 using FG.Processor.Processor.SignUpProcessor.Command;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace FG.Domain.MappingProfile
             CreateMap<Lead, LeadDto>();
             CreateMap<UpdateCommand, Lead>();
             CreateMap<CreateCommand, User>();
+            CreateMap<UpdateOpportunity, Opportunity>();
             CreateMap<Opportunity, OpportunityDto>();
         }
     }

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FG.Database.MSSql.Repositories;
+using FG.Domain.DataEntity;
 using FG.Domain.DTO_s;
 using MediatR;
 using System;
@@ -8,33 +9,29 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace FG.Processor.Processor.LeadsPage.Queries
+namespace FG.Processor.Processor.OpportunityProcessor.Query
 {
-    public class GetByIdQuery:IRequest<LeadDto>
+    public class GetByIdQuery : IRequest<OpportunityDto>
     {
-        public int Lid { get; set; }
         public int Id { get; set; }
-
-        public class GetByIdQueryHandler : IRequestHandler<GetByIdQuery, LeadDto>
+        public class GetByIdQueryHandler : IRequestHandler<GetByIdQuery, OpportunityDto>
         {
-            private readonly IUnitOfWork unitOfWork;
             private readonly IMapper mapper;
-
+            private readonly IUnitOfWork unitOfWork;
             public GetByIdQueryHandler(IUnitOfWork unitOfWork,IMapper mapper)
             {
                 this.unitOfWork = unitOfWork;
                 this.mapper = mapper;
             }
-            public async Task<LeadDto> Handle(GetByIdQuery request, CancellationToken cancellationToken)
+            public async Task<OpportunityDto> Handle(GetByIdQuery request, CancellationToken cancellationToken)
             {
-                var leads =await unitOfWork.lead.GetbyId(request.Lid);
-                var result = mapper.Map<LeadDto>(leads);
+                var opp = await unitOfWork.Opportunity.GetbyId(request.Id);
+                var result = mapper.Map<OpportunityDto>(opp);
                 if (result == null)
-                {
                     return null;
-                }
                 return result;
-               }
+            }
         }
+
     }
 }
