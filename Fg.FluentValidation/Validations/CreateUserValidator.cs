@@ -38,7 +38,10 @@ namespace Fg.FluentValidation
         private bool UniqueMail(string email)
         {          
             var result = context.tbl_User.Where(x => x.Email == email);
-            if (result == null) return true;
+            if (result == null)
+            {
+                return true;
+            }
             return false;
         }
     }

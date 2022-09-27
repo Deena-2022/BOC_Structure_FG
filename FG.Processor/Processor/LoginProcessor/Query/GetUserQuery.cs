@@ -25,7 +25,10 @@ namespace FG.Processor.Processor.LoginProcessor.Query
             {
                 var result =  unitOfWork.user.FindByCondition(x => x.Email == request.Email && x.Password == request.Password).FirstOrDefault();
                 await unitOfWork.Save();
-                if (result == null) return "Login Failed.....!";
+                if (result == null)
+                {
+                    return "Login Failed.....!";
+                }
                 return "Login Successfully....!";
             }
         }

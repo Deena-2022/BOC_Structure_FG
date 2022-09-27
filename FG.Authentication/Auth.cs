@@ -23,8 +23,9 @@ namespace FG.Authentication
         {
             var db = context.tbl_User.FirstOrDefault(x => x.Email == username && x.Password == password);
             if (db == null)
+            {
                 return null;
-
+            }
 
             // 1. Create Security Token Handler
             var tokenHandler = new JwtSecurityTokenHandler();

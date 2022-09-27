@@ -28,7 +28,9 @@ namespace FG.Processor.Processor.OpportunityProcessor.Query
                 var opp = await unitOfWork.Opportunity.GetbyId(request.Id);
                 var result = mapper.Map<OpportunityDto>(opp);
                 if (result == null)
+                {
                     return null;
+                }                   
                 return result;
             }
         }

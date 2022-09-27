@@ -15,12 +15,11 @@ namespace FG.Processor.Processor.OpportunityProcessor.Commands
         public class DeleteCommandHandler : IRequestHandler<DeleteCommand, int>
         {
             private readonly IUnitOfWork unitOfWork;
-            private readonly IMapper mapper;
 
-            public DeleteCommandHandler(IUnitOfWork unitOfWork,IMapper mapper)
+            public DeleteCommandHandler(IUnitOfWork unitOfWork)
             {
                 this.unitOfWork = unitOfWork;
-                this.mapper = mapper;
+                
             }
             public async Task<int> Handle(DeleteCommand request, CancellationToken cancellationToken)
             {

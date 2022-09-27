@@ -15,16 +15,15 @@ namespace FG.Processor.Processor.LeadsProcessor.Commands
         public class DeleteCommandHAandler : IRequestHandler<DeleteCommand, int>
         {
             private readonly IUnitOfWork unitOfWork;
-            private readonly IMapper mapper;
 
-            public DeleteCommandHAandler(IUnitOfWork unitOfWork,IMapper mapper)
+            public DeleteCommandHAandler(IUnitOfWork unitOfWork)
             {
                 this.unitOfWork = unitOfWork;
-                this.mapper = mapper;
+               
             }
             public async Task<int> Handle(DeleteCommand request, CancellationToken cancellationToken)
             {
-                var result =  unitOfWork.lead.Delete(request.Lid);
+                await unitOfWork.lead.Delete(request.Lid);
                 await unitOfWork.Save();
                 return request.Lid;
             }

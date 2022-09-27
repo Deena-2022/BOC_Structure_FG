@@ -35,7 +35,10 @@ namespace Opportunity_Project.Controllers
         [HttpPut("{Id}")]
         public async Task<IActionResult> Update(int Id,UpdateOpportunity command)
         {
-            if (Id != command.Id) return BadRequest();
+            if (Id != command.Id) 
+            { 
+                return BadRequest(); 
+            }
             return Ok(await mediator.Send(command));
         }
         [HttpDelete("{Id}")]

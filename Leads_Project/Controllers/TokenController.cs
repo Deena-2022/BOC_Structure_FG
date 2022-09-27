@@ -27,7 +27,10 @@ namespace Leads_Project.Controllers
         {
             var token = auth.Authentication(userCredential.UserName, userCredential.Password);
             if (token == null)
+            {
                 return Unauthorized();
+            }
+                
             return Ok(token);
         }
     }

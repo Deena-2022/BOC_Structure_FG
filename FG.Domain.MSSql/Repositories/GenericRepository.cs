@@ -21,11 +21,11 @@ namespace FG.Database.MSSql.Repositories
         public async Task Add(T entity)
         {
             await context.Set<T>().AddAsync(entity);
-        }
+        } 
 
         public async Task Delete(int Entity)
         {
-            T exist =await context.Set<T>().FindAsync(Entity);
+            var exist =await context.Set<T>().FindAsync(Entity);
             context.Remove(exist);
         }
 

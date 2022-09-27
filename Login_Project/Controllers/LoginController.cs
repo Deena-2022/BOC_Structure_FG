@@ -22,7 +22,6 @@ namespace Login_Project.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(GetUserQuery query)
         {
-
             return Ok(await mediator.Send(query));
         }
     }
